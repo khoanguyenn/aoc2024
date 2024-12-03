@@ -15,14 +15,16 @@ def part_two(input_path: str) -> str:
   with open(input_path) as f:
     reports = [list(map(int,line.split(' '))) for line in f.read().split('\n')]
 
-  rectifiable = 0
-  for report in reports:
+  unsafe_reports = [report for report in reports if not is_safe(report)]
+  safe_reports = len(reports) - len(unsafe_reports)
+  rectifiable_reports = 0
+  for report in unsafe_reports:
     for i in range(len(report)):
       if is_safe([*report[:i], *report[i + 1 :]]):
-        rectifiable += 1
+        rectifiable_reports += 1
         break
 
-  return rectifiable
+  return safe_reports + rectifiable_reports
 
 def is_safe(sequence: list) -> bool:
   is_monotonic = all(is_increasing(sequence)) or all(is_decreasing(sequence))
