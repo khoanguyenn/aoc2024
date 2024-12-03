@@ -8,7 +8,7 @@ def part_one(input_path: str) -> int:
 
   count = 0
   for report in reports:
-      count += 1 if is_safe(report) else 0
+    count += 1 if is_safe(report) else 0
   return count
 
 def part_two(input_path: str) -> str:
