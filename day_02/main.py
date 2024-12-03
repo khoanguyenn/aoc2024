@@ -19,7 +19,6 @@ def part_two(input_path: str) -> str:
   for report in reports:
     for i in range(len(report)):
       if is_safe([*report[:i], *report[i + 1 :]]):
-        print(report)
         rectifiable += 1
         break
 
@@ -40,8 +39,8 @@ def is_differ(sequence: list, at_most: int = 3) -> iter:
   return [abs(a - b) <= at_most for a,b in pairwise(sequence)]
 
 if __name__ == "__main__":
-  input_path = './day_02/example.txt'
-  # print("====Part one====")
-  # print(part_one(input_path))
+  input_path = './day_02/input.txt'
+  print("====Part one====")
+  print(part_one(input_path))
   print("====Part two====")
   print(part_two(input_path))
