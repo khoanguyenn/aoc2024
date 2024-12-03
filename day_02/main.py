@@ -8,10 +8,7 @@ def part_one(input_path: str) -> int:
 
   count = 0
   for report in reports:
-      is_monotonic = all(is_increasing(report)) or all(is_decreasing(report))
-      is_between_differ = all(is_differ(report, 3))
-      count += 1 if is_monotonic and is_between_differ else 0
-
+      count += 1 if is_safe(report) else 0
   return count
 
 def part_two(input_path: str) -> str:
@@ -22,6 +19,7 @@ def part_two(input_path: str) -> str:
   for report in reports:
     for i in range(len(report)):
       if is_safe([*report[:i], *report[i + 1 :]]):
+        print(report)
         rectifiable += 1
         break
 
@@ -42,8 +40,8 @@ def is_differ(sequence: list, at_most: int = 3) -> iter:
   return [abs(a - b) <= at_most for a,b in pairwise(sequence)]
 
 if __name__ == "__main__":
-  input_path = './day_02/input.txt'
-  print("====Part one====")
-  print(part_one(input_path))
+  input_path = './day_02/example.txt'
+  # print("====Part one====")
+  # print(part_one(input_path))
   print("====Part two====")
   print(part_two(input_path))
