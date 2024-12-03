@@ -1,5 +1,5 @@
 import heapq
-from collections import defaultdict
+from collections import Counter
 
 def part_one(filename: str) -> int:
   group_1, group_2 = read_locations(filename)
@@ -10,10 +10,7 @@ def part_one(filename: str) -> int:
 
 def part_two(filename: str) -> int:
   group_1, group_2 = read_locations(filename)
-  seen = defaultdict(int)
-
-  for locat in group_2: seen[locat] += 1
-
+  seen = Counter(group_2)
   similarity = [locat*seen[locat] for locat in group_1]
   return sum(similarity)
 
